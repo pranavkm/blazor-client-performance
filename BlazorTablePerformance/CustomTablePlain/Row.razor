@@ -25,10 +25,23 @@
     [Parameter]
     public Func<int, Task> OnClick { get; set; }
 
+    bool shouldRender;
     Task OnCellClick(int args)
     {
+        shouldRender = true;
         isSelected = !isSelected;
 
         return OnClick.Invoke(args);
+    }
+
+    protected override bool ShouldRender()
+    {
+        if (shouldRender)
+        {
+            shouldRender = false;
+            return true;
+        }
+
+        return false;
     }
 }

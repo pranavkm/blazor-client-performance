@@ -26,4 +26,6 @@
 
     [Parameter]
     public Func<int, Task> OnClick { get; set; }
+
+    protected override bool ShouldRender() => false;
 }
